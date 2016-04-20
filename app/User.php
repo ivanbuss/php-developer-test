@@ -23,4 +23,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function profile() {
+        return $this->hasOne('App\Profile');
+    }
+
+    public function delete() {
+        $this->profile->delete();
+        return parent::delete();
+    }
 }
